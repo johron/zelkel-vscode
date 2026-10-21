@@ -1,0 +1,103 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Zelkel",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#typeNames"
+		},
+		{
+			"include": "#functionNames"
+		},
+		{
+			"include": "#numbers"
+		},
+		{
+			"include": "#operators"
+		},
+		{
+			"include": "#punctuation"
+		},
+		{
+			"include": "#strings"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.zelkel",
+				"match": "\\b(class|struct|require|val|var|const|fn|if|while|for|return)\\b"
+			}]
+		},
+		"typeNames": {
+			"patterns": [
+				{
+					"name": "storage.type.zelkel",
+					"match": "\\b[A-Z][A-Za-z0-9_]*\\b"
+				},
+				{
+					"name": "entity.name.type.zelkel",
+					"match": "(?<=\\bstruct\\s)[A-Za-z_][A-Za-z0-9_]*"
+				}
+			]
+		},
+		"functionNames": {
+			"patterns": [
+				{
+					"name": "entity.name.function.zelkel",
+					"match": "(?<=\\bfn\\s)[A-Za-z_][A-Za-z0-9_]*"
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"name": "constant.numeric.integer.zelkel",
+					"match": "\\b\\d+\\b"
+				}
+			]
+		},
+		"operators": {
+			"patterns": [
+				{
+					"name": "keyword.operator.assignment.zelkel",
+					"match": "="
+				},
+				{
+					"name": "keyword.operator.access.zelkel",
+					"match": "(::|\\.)"
+				}
+			]
+		},
+		"punctuation": {
+			"patterns": [
+				{
+					"name": "punctuation.separator.colon.zelkel",
+					"match": ":"
+				},
+				{
+					"name": "punctuation.separator.comma.zelkel",
+					"match": ","
+				},
+				{
+					"name": "punctuation.definition.group.zelkel",
+					"match": "[(){}<>]"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.zelkel",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.zelkel",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.zelkel"
+}

@@ -1,0 +1,35 @@
+{
+  "name": "zelkel",
+  "displayName": "Zelkel",
+  "description": "",
+  "version": "0.1.1",
+  "icon": "./icons/kel.png",
+  "publisher": "JohanRong",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com"
+  },
+  "engines": {
+    "vscode": "^1.119.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "zelkel",
+      "aliases": ["Zelkel", "zelkel"],
+      "extensions": [".zk"],
+      "configuration": "./language-configuration.json",
+      "icon": {
+        "light": "./icons/kel.png",
+        "dark": "./icons/kel.png"
+      }
+    }],
+    "grammars": [{
+      "language": "zelkel",
+      "scopeName": "source.zelkel",
+      "path": "./syntaxes/zelkel.tmLanguage.json"
+    }]
+  }
+}
