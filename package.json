@@ -2,12 +2,12 @@
   "name": "zelkel",
   "displayName": "Zelkel",
   "description": "",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "icon": "./icons/kel.png",
   "publisher": "JohanRong",
   "repository": {
     "type": "git",
-    "url": "https://github.com"
+    "url": "https://github.com/johron/zelkel-vscode"
   },
   "engines": {
     "vscode": "^1.119.0"
