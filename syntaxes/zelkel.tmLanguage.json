@@ -3,7 +3,19 @@
 	"name": "Zelkel",
 	"patterns": [
 		{
+			"include": "#comments"
+		},
+		{
+			"include": "#llvmBlock"
+		},
+		{
 			"include": "#keywords"
+		},
+		{
+			"include": "#declarations"
+		},
+		{
+			"include": "#attributes"
 		},
 		{
 			"include": "#typeNames"
@@ -25,11 +37,96 @@
 		}
 	],
 	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.double-slash.zelkel",
+					"match": "//.*$"
+				},
+				{
+					"name": "comment.block.zelkel",
+					"begin": "/\\*",
+					"end": "\\*/"
+				}
+			]
+		},
+		"llvmBlock": {
+			"begin": "(#llvm)\\s*(\\{)",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.control.directive.llvm.zelkel"
+				},
+				"2": {
+					"name": "punctuation.section.block.begin.zelkel"
+				}
+			},
+			"end": "(\\})",
+			"endCaptures": {
+				"1": {
+					"name": "punctuation.section.block.end.zelkel"
+				}
+			},
+			"contentName": "meta.embedded.block.llvm.zelkel",
+			"patterns": [
+				{
+					"name": "keyword.control.llvm.instruction.zelkel",
+					"match": "\\b(alloca|store|load|call|ret|br|phi|getelementptr|bitcast|ptrtoint|inttoptr|malloc|free|align)\\b"
+				},
+				{
+					"name": "support.type.llvm.integer.zelkel",
+					"match": "\\bi[0-9]+\\b"
+				},
+				{
+					"name": "variable.other.register.llvm.zelkel",
+					"match": "%[A-Za-z_][A-Za-z0-9_]*"
+				},
+				{
+					"include": "#numbers"
+				},
+				{
+					"include": "#strings"
+				}
+			]
+		},
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.zelkel",
-				"match": "\\b(class|struct|require|val|var|const|fn|if|while|for|return)\\b"
+				"match": "\\b(package|require|self|val|var|const|if|else|while|for|return)\\b|\\b(?:class!?|struct!?|fn!?)(?![A-Za-z0-9_])"
+			}, {
+				"name": "constant.language.zelkel",
+				"match": "\\b(true|false|null)\\b"
+			}, {
+				"name": "support.type.primitive.zelkel",
+				"match": "\\b(void|Self|String)\\b"
 			}]
+		},
+		"declarations": {
+			"patterns": [
+				{
+					"name": "entity.name.namespace.zelkel",
+					"match": "(?<=\\bpackage\\s)[A-Za-z_][A-Za-z0-9_]*(?:::[A-Za-z_][A-Za-z0-9_]*)*"
+				},
+				{
+					"name": "entity.name.namespace.import.zelkel",
+					"match": "(?<=\\brequire\\s)[A-Za-z_][A-Za-z0-9_]*(?:::[A-Za-z_][A-Za-z0-9_]*)*"
+				},
+				{
+					"name": "entity.name.type.class.zelkel",
+					"match": "(?<=\\bclass!?\\s)[A-Za-z_][A-Za-z0-9_]*"
+				},
+				{
+					"name": "entity.name.type.struct.zelkel",
+					"match": "(?<=\\bstruct!?\\s)[A-Za-z_][A-Za-z0-9_]*"
+				}
+			]
+		},
+		"attributes": {
+			"patterns": [
+				{
+					"name": "storage.modifier.attribute.zelkel",
+					"match": ":[A-Za-z_][A-Za-z0-9_]*"
+				}
+			]
 		},
 		"typeNames": {
 			"patterns": [
@@ -38,8 +135,8 @@
 					"match": "\\b[A-Z][A-Za-z0-9_]*\\b"
 				},
 				{
-					"name": "entity.name.type.zelkel",
-					"match": "(?<=\\bstruct\\s)[A-Za-z_][A-Za-z0-9_]*"
+					"name": "storage.type.generic.parameter.zelkel",
+					"match": "(?<=<)\\s*[A-Z][A-Za-z0-9_]*\\s*(?=>|,)"
 				}
 			]
 		},
@@ -47,7 +144,11 @@
 			"patterns": [
 				{
 					"name": "entity.name.function.zelkel",
-					"match": "(?<=\\bfn\\s)[A-Za-z_][A-Za-z0-9_]*"
+					"match": "(?<=\\bfn!?\\s)[A-Za-z_][A-Za-z0-9_]*"
+				},
+				{
+					"name": "entity.name.function.call.zelkel",
+					"match": "\\b[A-Za-z_][A-Za-z0-9_]*(?=\\s*\\()"
 				}
 			]
 		},
@@ -62,12 +163,24 @@
 		"operators": {
 			"patterns": [
 				{
+					"name": "keyword.operator.arrow.zelkel",
+					"match": "->"
+				},
+				{
+					"name": "keyword.operator.reference.zelkel",
+					"match": "&"
+				},
+				{
 					"name": "keyword.operator.assignment.zelkel",
 					"match": "="
 				},
 				{
 					"name": "keyword.operator.access.zelkel",
 					"match": "(::|\\.)"
+				},
+				{
+					"name": "keyword.operator.zelkel",
+					"match": "[+\\-*/%!]"
 				}
 			]
 		},
