@@ -3,7 +3,7 @@
   "displayName": "Zelkel",
   "description": "Zelkel language support",
   "version": "0.1.4",
-  "icon": "./icons/extension.png",
+  "icon": "./icons/kel-bg.png",
   "publisher": "JohanRong",
   "repository": {
     "type": "git",
